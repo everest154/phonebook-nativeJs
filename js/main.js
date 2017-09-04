@@ -209,7 +209,7 @@
                 const parent = fields[error].parentNode;
                 const errorField = parent.getElementsByClassName('alert')[0];
                 if (errorField) {
-                    (errors[error]) ? errorField.textContent = 'Error: ' + errors[error] : error.textContent = '';
+                    (errors[error]) ? errorField.textContent = 'Error: ' + errors[error] : errorField.textContent = '';
                 } else {
                     if (errors[error]) {
                         parent.insertAdjacentHTML('beforeend',
