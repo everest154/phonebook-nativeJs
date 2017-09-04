@@ -1,0 +1,92 @@
+body {
+    background: #ECE9E6;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.sidebar__contacts-label {
+    padding: 10px 0;
+    display: block;
+    height: 54px;
+}
+
+.header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.container-fluid {
+    max-width: 1200px;
+}
+
+.sidebar__contacts-list {
+    height: calc(100% - 59px);
+    overflow: auto;
+    margin-bottom: 0;
+    padding: 1px 0;
+}
+
+.sidebar {
+    height: calc(100vh - 158px);
+}
+
+.sidebar__logo {
+    padding: 15px 0;
+    height: 158px;
+}
+
+.sidebar__contacts-wrapper {
+    height: 100%;
+    padding-bottom: 15px;
+}
+
+.main-container {
+    padding-top: 5px;
+    padding-bottom: 10px;
+    overflow: hidden;
+}
+
+.btn > .glyphicon {
+    padding-left: 4px;
+}
+
+#btnSave {
+    display: none;
+}
+
+.modal.in {
+    display: block;
+}
+
+.modal {
+    background: rgba(0,0,0,0.5);
+}
+
+.edit-container {
+    transform: translateX(120%);
+    transition: transform 500ms ease-in-out;
+}
+
+.edit-container--showed {
+    transform: translateX(0);
+}
+
+.empty-contacts-list {
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.alert {
+    padding: 0;
+    position: absolute;
+    width: 100%;
+    border: 0;
+    padding: 0 15px;
+}
