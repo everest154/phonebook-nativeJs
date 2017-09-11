@@ -20,36 +20,17 @@
         <div class="col-xs-12 col-sm-4 sidebar">
             <div class="sidebar__contacts-wrapper">
                 <label class="sidebar__contacts-label" for="contact-search">
-                    <input class="sidebar__contacts-search form-control" type="text"
+                    <input class="sidebar__contacts-search form-control" type="search"
                            id="contact-search" placeholder="Поиск">
                 </label>
 
                 <ul id="contacts-list" class="sidebar__contacts-list list-group"></ul>
 
+
             </div>
         </div>
         <div class="col-xs-12 col-sm-8 main-container">
             <div id="edit-container" class="row edit-container">
-                <div class="col-xs-12 col-sm-6">
-                    <div class="form-group">
-                        <label for="email">Email address</label>
-                        <input disabled type="email" class="form-control form-control-values" id="email">
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone number</label>
-                        <input disabled type="text" class="form-control form-control-values" id="phone">
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-6">
-                    <div class="form-group">
-                        <label for="firstName">First name</label>
-                        <input disabled type="text" class="form-control form-control-values" id="firstName">
-                    </div>
-                    <div class="form-group">
-                        <label for="lastName">Last name</label>
-                        <input disabled type="text" class="form-control form-control-values" id="lastName">
-                    </div>
-                </div>
                 <div class="col-xs-12">
                     <div class="btn-toolbar">
                         <button type="button" id="delete-contact" class="btn btn-danger pull-right">Delete
@@ -62,6 +43,36 @@
                             <span class="glyphicon glyphicon-save"></span>
                         </button>
                     </div>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                        <label for="firstName">First name</label>
+                        <input disabled type="text" class="form-control form-control-values" id="firstName">
+                        <div class="alert alert-danger" role="alert"></div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                        <label for="lastName">Last name</label>
+                        <input disabled type="text" class="form-control form-control-values" id="lastName">
+                        <div class="alert alert-danger" role="alert"></div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                        <label for="phone">Phone number</label>
+                        <input disabled type="tel" class="form-control form-control-values" id="phone">
+                        <div class="alert alert-danger" role="alert"></div>
+                    </div>
+                    <div id="phone-container"></div>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input disabled type="email" class="form-control form-control-values" id="email">
+                        <div class="alert alert-danger" role="alert"></div>
+                    </div>
+                    <div id="email-container"></div>
                 </div>
             </div>
         </div>
@@ -76,21 +87,27 @@
                 <h4 class="modal-title">Modal Header</h4>
             </div>
             <div class="modal-body">
-                <div id="content-email" class="form-group">
-                    <label for="popup-email">Email address</label>
-                    <input type="email" class="form-control" id="popup-email">
-                </div>
-                <div id="content-phone" class="form-group">
-                    <label for="popup-phone">Phone number</label>
-                    <input type="text" class="form-control" id="popup-phone">
-                </div>
                 <div id="content-firstname" class="form-group">
                     <label for="popup-firstName">First name</label>
                     <input type="text" class="form-control" id="popup-firstName">
+                    <div class="alert alert-danger" role="alert"></div>
                 </div>
                 <div id="content-lastname" class="form-group">
                     <label for="popup-lastName">Last name</label>
                     <input type="text" class="form-control" id="popup-lastName">
+                    <div class="alert alert-danger" role="alert"></div>
+                </div>
+                <div id="content-email" class="form-group popup-emails">
+                    <label for="popup-email">Email address</label>
+                    <input type="email" class="form-control" id="popup-email">
+                    <input type="submit" value="" id="addEmail" class="addEmail">
+                    <div class="alert alert-danger" role="alert"></div>
+                </div>
+                <div id="content-phone" class="form-group popup-phones">
+                    <label for="popup-phone">Phone number</label>
+                    <input type="tel" class="form-control" id="popup-phone">
+                    <input type="submit" value="" id="addNumber" class="addEmail">
+                    <div class="alert alert-danger" role="alert"></div>
                 </div>
             </div>
             <div class="modal-footer">
