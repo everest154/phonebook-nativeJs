@@ -48,7 +48,6 @@
         if (expression.test(event.target.className)) {
             const id = event.target.getAttribute('data-id');
             currentContact = allContacts.filter((item) => item.id == id)[0];
-            console.log(currentContact)
             if (currentContact.firstName
                 && currentContact.lastName
                 && currentContact.email
@@ -215,6 +214,8 @@
             for (let i = 0; i < inputs.length; i++) {
                 inputs[i].disabled = true;
             }
+        } else {
+            showNotification('danger', `Please fill all fields.`);
         }
     }
 
@@ -272,6 +273,8 @@
             closeModalModel();
             updateContacts(contact, 'add');
             cleanupInputs(inputs);
+        } else {
+            showNotification('danger', `Please fill all fields.`);
         }
     });
 
@@ -417,11 +420,13 @@
             case 'add':
                 allContacts.push(contact);
                 localStorage.setItem('users', JSON.stringify(allContacts));
+                showNotification('success', 'New contact has been added');
                 break;
             case 'delete':
                 allContacts = allContacts.filter((it) => it.id !== contact.id);
                 localStorage.setItem('users', JSON.stringify(allContacts));
                 hideEditContainer();
+                showNotification('success', `Contact  <b>${contact.firstName} ${contact.lastName}</b> has been removed`);
                 break;
             case 'update':
                 allContacts = allContacts.map((it) => {
@@ -431,6 +436,7 @@
                     return it;
                 });
                 localStorage.setItem('users', JSON.stringify(allContacts));
+                showNotification('success', `Contact  <b>${contact.firstName} ${contact.lastName}</b> has been updated`);
                 break;
             default :
                 break;
@@ -441,5 +447,19 @@
 
     function hasClass(elem, className) {
         return elem.className.split(' ').indexOf(className) > -1;
+    }
+
+    let notifyId = 0;
+    function notificationTemplate(action, message) {
+        return `<div id="notify-${notifyId++}" class="notification ${action}">${message}</div>`;
+    }
+
+    function showNotification(action, message) {
+        let element;
+        doc.body.insertAdjacentHTML('beforeend', notificationTemplate(action, message));
+        element = doc.getElementById(`notify-${notifyId - 1}`);
+        setTimeout(() => {
+            element.remove();
+        }, 3000);
     }
 })();

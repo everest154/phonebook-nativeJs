@@ -101,3 +101,31 @@ body {
     height:23px;
     width:30px;
 }
+
+.notification {
+    position: absolute;
+    z-index: 11111;
+    right: 15px;
+    top: 15px;
+    width: 20vw;
+    padding: 20px;
+    border-radius: 8px;
+    animation: notification 2s ease-in-out;
+}
+
+.notification.success {
+    background: #8fd88f;
+}
+
+.notification.danger {
+    background: #d85b4d;
+}
+
+@keyframes notification {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
