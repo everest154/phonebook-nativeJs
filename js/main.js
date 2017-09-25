@@ -181,6 +181,7 @@
         for (let i = 0; i < inputs.length; i++) {
             inputs[i].disabled = false;
         }
+        editContainer.classList.remove('edit-container--edit-mode');
         btnSave.style.display = 'block';
         btnEdit.style.display = 'none';
     }
@@ -214,6 +215,7 @@
             for (let i = 0; i < inputs.length; i++) {
                 inputs[i].disabled = true;
             }
+            editContainer.classList.add('edit-container--edit-mode');
         } else {
             showNotification('danger', `Please fill all fields.`);
         }

@@ -30,7 +30,7 @@
             </div>
         </div>
         <div class="col-xs-12 col-sm-8 main-container">
-            <div id="edit-container" class="row edit-container">
+            <div id="edit-container" class="row edit-container edit-container--edit-mode">
                 <div class="col-xs-12">
                     <div class="btn-toolbar">
                         <button type="button" id="delete-contact" class="btn btn-danger pull-right">Delete
@@ -62,6 +62,7 @@
                     <div class="form-group">
                         <label for="phone">Phone number</label>
                         <input disabled type="tel" class="form-control form-control-values" id="phone">
+                        <input type="submit" value="" id="addViewNumber" class="addEmail">
                         <div class="alert alert-danger" role="alert"></div>
                     </div>
                     <div id="phone-container"></div>
@@ -70,6 +71,7 @@
                     <div class="form-group">
                         <label for="email">Email address</label>
                         <input disabled type="email" class="form-control form-control-values" id="email">
+                        <input type="submit" value="" id="addViewEmail" class="addEmail">
                         <div class="alert alert-danger" role="alert"></div>
                     </div>
                     <div id="email-container"></div>
