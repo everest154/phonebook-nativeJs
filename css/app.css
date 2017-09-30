@@ -98,8 +98,11 @@ body {
 }
 
 .remove-additional-field {
-    height:23px;
-    width:30px;
+    height: 24px;
+    width: 30px;
+    position: absolute;
+    right: 6px;
+    top: 30px;
 }
 
 .notification {
@@ -130,6 +133,7 @@ body {
     }
 }
 
-.edit-container--edit-mode input[type="submit"] {
+.edit-container--edit-mode input[type="submit"],
+.edit-container--edit-mode button.remove-additional-field{
     display: none;
 }

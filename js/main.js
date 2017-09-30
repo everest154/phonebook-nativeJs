@@ -36,6 +36,11 @@
     const emailContainer = doc.getElementById('email-container');
     const additionalNumber = doc.getElementById('addNumber');
     const phoneContainer = doc.getElementById('phone-container');
+    const addViewNumber = doc.getElementById('addViewNumber');
+    // const additionalPhone = doc.getElementById('additionalPhone');
+    const addViewEmail = doc.getElementById('addViewEmail');
+    const additionalViewEmail = doc.getElementById('additionalViewEmail');
+    const additionalViewButton = doc.querySelectorAll('additional-view-button');
 
     updateContactsList();
 
@@ -46,6 +51,10 @@
     contactList.addEventListener('click', (event) => {
         const expression = /list-group-item/;
         if (expression.test(event.target.className)) {
+            if (!hasClass(editContainer, 'edit-container--edit-mode')) {
+                showNotification('danger', `Please save contact details before view other contacts.`);
+                return;
+            }
             const id = event.target.getAttribute('data-id');
             currentContact = allContacts.filter((item) => item.id == id)[0];
             if (currentContact.firstName
@@ -64,6 +73,7 @@
                             emailContainer.insertAdjacentHTML('beforeend', `<div class="form-group">
                                                                             <label>Additional email address</label>
                                                                             <input disabled type="email" value="${item}" class="form-control view-emails-input form-control-values">
+                                                                            <button type="button" class="glyphicon glyphicon-remove-circle remove-additional-field additional-view-button"></button>
                                                                             <div class="alert alert-danger" role="alert"></div>
                                                                         </div>`)
                         });
@@ -76,6 +86,7 @@
                             phoneContainer.insertAdjacentHTML('beforeend', `<div class="form-group">
                                                                             <label >Additional phone number</label>
                                                                             <input disabled type="tel" value="${item}" class="form-control view-phones-input form-control-values">
+                                                                            <button type="button" class="glyphicon glyphicon-remove-circle remove-additional-field additional-view-button"></button>
                                                                             <div class="alert alert-danger" role="alert"></div>
                                                                         </div>`)
                         });
@@ -178,8 +189,9 @@
     }
 
     function getEdit() {
-        for (let i = 0; i < inputs.length; i++) {
-            inputs[i].disabled = false;
+        const allInputs = editContainer.querySelectorAll('input:not([type="submit"])');
+        for (let i = 0; i < allInputs.length; i++) {
+            allInputs[i].disabled = false;
         }
         editContainer.classList.remove('edit-container--edit-mode');
         btnSave.style.display = 'block';
@@ -192,11 +204,11 @@
     function saveValues() {
         let contactInputs = {
             email: emailField,
-            additionalEmails: doc.querySelectorAll('.view-emails-input'),
-            additionalPhones: doc.querySelectorAll('.view-phones-input'),
+            additionalEmails: doc.querySelectorAll('.view-emails-input, .add-additional-view-emails'),
+            additionalPhones: doc.querySelectorAll('.view-phones-input, .add-additional-view-numbers'),
             phone: phoneField,
             firstName: firstNameField,
-            lastName: lastNameField
+            lastName: lastNameField,
         };
         let contact = {
             email: emailField.value,
@@ -209,11 +221,12 @@
         };
 
         if (inputsValidation(viewErrors)) {
+            const allInputs = editContainer.querySelectorAll('input:not([type="submit"])');
             updateContacts(contact, 'update');
             btnSave.style.display = 'none';
             btnEdit.style.display = 'block';
-            for (let i = 0; i < inputs.length; i++) {
-                inputs[i].disabled = true;
+            for (let i = 0; i < allInputs.length; i++) {
+                allInputs[i].disabled = true;
             }
             editContainer.classList.add('edit-container--edit-mode');
         } else {
@@ -463,5 +476,27 @@
         setTimeout(() => {
             element.remove();
         }, 3000);
+    }
+
+    addViewNumber.addEventListener('click', addAdditionalViewNumber);
+    function addAdditionalViewNumber () {
+        const addViewNumber = `<div class="form-group popup-phones">
+                                            <label class='additional-number' for="popup-email">Additional phone number</label>
+                                            <input type="tel" class="form-control popup-phones-input add-additional-view-numbers" id="popup-email${phonesCount++}">
+                                            <button type="button" class="glyphicon glyphicon-remove-circle remove-additional-field additional-view-button"></button>
+                                            <div class="alert alert-danger" role="alert"></div>
+                                        </div>`;
+        phoneContainer.insertAdjacentHTML('beforeend',addViewNumber);
+    }
+
+    addViewEmail.addEventListener('click', addAdditionalViewEmail);
+    function addAdditionalViewEmail(){
+        const addViewEmail = `<div class="form-group popup-emails">
+                                            <label for="popup-email">Additional email address</label>
+                                            <input type="email" class="form-control popup-emails-input add-additional-view-emails" id="popup-email${emailsCount++}">
+                                            <button type="button" class="glyphicon glyphicon-remove-circle remove-additional-field additional-view-button"></button>
+                                            <div class="alert alert-danger" role="alert"></div>
+                                        </div>`;
+        emailContainer.insertAdjacentHTML('beforeend', addViewEmail);
     }
 })();
